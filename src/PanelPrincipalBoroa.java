@@ -1,5 +1,6 @@
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -293,6 +294,11 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
         jl_jugadores.setBackground(new java.awt.Color(255, 255, 255));
         jl_jugadores.setForeground(new java.awt.Color(0, 0, 0));
         jl_jugadores.setModel(new DefaultListModel());
+        jl_jugadores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_jugadoresMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jl_jugadores);
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -373,6 +379,11 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
         );
 
         modificar_jugador.setText("Modificar");
+        modificar_jugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificar_jugadorActionPerformed(evt);
+            }
+        });
         jp_jugadores.add(modificar_jugador);
 
         eliminar_jugador.setText("Eliminar");
@@ -607,6 +618,28 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
         
     }//GEN-LAST:event_agregarJugadoresMouseClicked
 
+    private void jl_jugadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_jugadoresMouseClicked
+        if (jl_jugadores.getSelectedIndex() >= 0) {
+            if (evt.isMetaDown()){
+                jp_jugadores.show(evt.getComponent(), evt.getX(), evt.getY());
+            } 
+        }
+        
+        
+    }//GEN-LAST:event_jl_jugadoresMouseClicked
+
+    private void modificar_jugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_jugadorActionPerformed
+        if (jl_jugadores.getSelectedIndex() >= 0) {
+            DefaultListModel modelo = (DefaultListModel)jl_jugadores.getModel();
+            String nombre = JOptionPane.showInputDialog("Ingrese el nombre"); 
+            
+            int edad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la edad: ")); 
+            
+                    
+        }
+        
+    }//GEN-LAST:event_modificar_jugadorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -695,4 +728,8 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
     private javax.swing.JTextField jt_paisEquipo1;
     private javax.swing.JMenuItem modificar_jugador;
     // End of variables declaration//GEN-END:variables
+    DefaultMutableTreeNode nodo_selec; 
+    Jugador jugador_selec; 
+
+
 }
