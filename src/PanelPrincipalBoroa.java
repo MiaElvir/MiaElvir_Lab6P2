@@ -1,3 +1,8 @@
+
+import javax.swing.DefaultListModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -42,12 +47,11 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jt_nombreJugador2 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        js_edad = new javax.swing.JSpinner();
+        jcb_posicion = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        agregarJugadores = new javax.swing.JButton();
         jd_transferencias = new javax.swing.JDialog();
         jPanel4 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
@@ -55,7 +59,7 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
         jl_jugadores = new javax.swing.JList<>();
         jLabel14 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jt_equipos = new javax.swing.JTree();
+        jt_equiposArbol = new javax.swing.JTree();
         jLabel15 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jp_jugadores = new javax.swing.JPopupMenu();
@@ -107,6 +111,11 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
         agregarEquipos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         agregarEquipos.setForeground(new java.awt.Color(0, 0, 0));
         agregarEquipos.setText("Agregar");
+        agregarEquipos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                agregarEquiposMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -193,26 +202,29 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
 
         jt_nombreJugador2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel10.setText("jLabel10");
-
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Edad");
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(15, 15, 45, 1));
+        js_edad.setModel(new javax.swing.SpinnerNumberModel(15, 15, 45, 1));
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Portero", "Defensa", "MedioCampista", "Delantero", " " }));
+        jcb_posicion.setBackground(new java.awt.Color(255, 255, 255));
+        jcb_posicion.setForeground(new java.awt.Color(0, 0, 0));
+        jcb_posicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Portero", "Defensa", "MedioCampista", "Delantero", " " }));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Posicion");
 
-        jButton4.setBackground(new java.awt.Color(255, 153, 153));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 0, 0));
-        jButton4.setText("Agregar");
+        agregarJugadores.setBackground(new java.awt.Color(255, 153, 153));
+        agregarJugadores.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        agregarJugadores.setForeground(new java.awt.Color(0, 0, 0));
+        agregarJugadores.setText("Agregar");
+        agregarJugadores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                agregarJugadoresMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -220,9 +232,6 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(jLabel10))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(110, 110, 110)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -234,38 +243,33 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
                             .addComponent(jLabel12))
                         .addGap(47, 47, 47)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jcb_posicion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jt_nombreJugador2, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                            .addComponent(jSpinner1)))
+                            .addComponent(js_edad)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(129, 129, 129)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(agregarJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(89, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jt_nombreJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel10)))
+                    .addComponent(jLabel9)
+                    .addComponent(jt_nombreJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(js_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcb_posicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
                 .addGap(31, 31, 31)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(agregarJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -288,17 +292,18 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
 
         jl_jugadores.setBackground(new java.awt.Color(255, 255, 255));
         jl_jugadores.setForeground(new java.awt.Color(0, 0, 0));
+        jl_jugadores.setModel(new DefaultListModel());
         jScrollPane1.setViewportView(jl_jugadores);
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Jugadores");
 
-        jt_equipos.setBackground(new java.awt.Color(255, 255, 255));
-        jt_equipos.setForeground(new java.awt.Color(0, 0, 0));
-        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
-        jt_equipos.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jScrollPane2.setViewportView(jt_equipos);
+        jt_equiposArbol.setBackground(new java.awt.Color(255, 255, 255));
+        jt_equiposArbol.setForeground(new java.awt.Color(0, 0, 0));
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Equipos");
+        jt_equiposArbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane2.setViewportView(jt_equiposArbol);
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
@@ -566,6 +571,42 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
        jd_transferencias.setVisible(true);
     }//GEN-LAST:event_jButton3MouseClicked
 
+    private void agregarEquiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarEquiposMouseClicked
+       DefaultTreeModel modeloArbolito = (DefaultTreeModel) jt_equiposArbol.getModel(); 
+       DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modeloArbolito.getRoot(); 
+       String pais = jt_paisEquipo1.getText(); 
+       int num = 0; 
+        for (int i = 0; i < raiz.getChildCount(); i++) {
+            if (raiz.getChildAt(i).toString().equals(pais)) {
+                num = 1; 
+            }
+        }
+        
+        
+       DefaultMutableTreeNode nodo_equipos = new DefaultMutableTreeNode
+        (new Equipo(jt_paisEquipo1.getText(), jt_nombreEquipo1.getText(), jt_ciudadEquipo.getText(), jt_estadioEquipo.getText())); 
+       DefaultMutableTreeNode nombre_equipo = new DefaultMutableTreeNode((String)jt_nombreEquipo1.getText()); 
+       DefaultMutableTreeNode ciudad_equipo = new DefaultMutableTreeNode((String) jt_ciudadEquipo.getText()); 
+       DefaultMutableTreeNode estadio_equipo = new DefaultMutableTreeNode((String) jt_ciudadEquipo.getText()); 
+       
+       
+        
+        
+        
+    }//GEN-LAST:event_agregarEquiposMouseClicked
+
+    private void agregarJugadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarJugadoresMouseClicked
+        
+        DefaultListModel modeloLista = (DefaultListModel) jl_jugadores.getModel(); 
+        modeloLista.addElement(new Jugador(jt_nombreJugador2.getText(), (String)jcb_posicion.getSelectedItem(), (Integer)js_edad.getValue()));
+        jl_jugadores.setModel(modeloLista);
+        jt_nombreJugador2.setText("");
+        js_edad.setValue(15);
+        jcb_posicion.setSelectedIndex(0);
+        
+        
+    }//GEN-LAST:event_agregarJugadoresMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -604,16 +645,14 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarEquipos;
+    private javax.swing.JButton agregarJugadores;
     private javax.swing.JMenuItem eliminar_equipo;
     private javax.swing.JMenuItem eliminar_jugador;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -639,16 +678,17 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JComboBox<String> jcb_posicion;
     private javax.swing.JDialog jd_Equipos;
     private javax.swing.JDialog jd_crearJugadores;
     private javax.swing.JDialog jd_transferencias;
     private javax.swing.JList<String> jl_jugadores;
     private javax.swing.JPopupMenu jp_equipos;
     private javax.swing.JPopupMenu jp_jugadores;
+    private javax.swing.JSpinner js_edad;
     private javax.swing.JTextField jt_ciudadEquipo;
-    private javax.swing.JTree jt_equipos;
+    private javax.swing.JTree jt_equiposArbol;
     private javax.swing.JTextField jt_estadioEquipo;
     private javax.swing.JTextField jt_nombreEquipo1;
     private javax.swing.JTextField jt_nombreJugador2;
