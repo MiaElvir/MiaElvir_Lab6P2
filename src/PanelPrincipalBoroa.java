@@ -397,6 +397,11 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jToolBar1.add(jButton1);
 
         jButton2.setBackground(new java.awt.Color(0, 153, 255));
@@ -406,6 +411,11 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         jToolBar1.add(jButton2);
 
         jButton3.setBackground(new java.awt.Color(0, 153, 255));
@@ -415,6 +425,11 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
         jToolBar1.add(jButton3);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -473,6 +488,11 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem3.setText("Transferencias");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem3);
 
         jMenuBar1.add(jMenu3);
@@ -501,15 +521,50 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
+       jd_crearJugadores.pack();
+       jd_crearJugadores.setLocationRelativeTo(this);
+       jd_crearJugadores.setModal(true);
+       jd_crearJugadores.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         jd_Equipos.pack();
         jd_Equipos.setLocationRelativeTo(this);
         jd_Equipos.setModal(true);
+        
         jd_Equipos.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+       jd_transferencias.pack();
+       jd_transferencias.setLocationRelativeTo(this);
+       jd_transferencias.setModal(true); 
+       jd_transferencias.setVisible(true);
+       
+       
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        jd_Equipos.pack();
+        jd_Equipos.setLocationRelativeTo(this);
+        jd_Equipos.setModal(true);
+        jd_Equipos.setVisible(true);  
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+       jd_crearJugadores.pack();
+       jd_crearJugadores.setLocationRelativeTo(this);
+       jd_crearJugadores.setModal(true);
+       jd_crearJugadores.setVisible(true); 
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+      jd_transferencias.pack();
+       jd_transferencias.setLocationRelativeTo(this);
+       jd_transferencias.setModal(true);
+       jd_transferencias.setVisible(true);
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
