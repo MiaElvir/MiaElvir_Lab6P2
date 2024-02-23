@@ -586,19 +586,33 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
        DefaultTreeModel modeloArbolito = (DefaultTreeModel) jt_equiposArbol.getModel(); 
        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modeloArbolito.getRoot(); 
        String pais = jt_paisEquipo1.getText(); 
-       int num = 0; 
+       int num = 0; //si es 0 no esta 
         for (int i = 0; i < raiz.getChildCount(); i++) {
             if (raiz.getChildAt(i).toString().equals(pais)) {
+                nodo_selec = (DefaultMutableTreeNode)raiz.getChildAt(i); 
                 num = 1; 
             }
         }
+        if (num == 0) {
+            DefaultMutableTreeNode pais_nodo = new DefaultMutableTreeNode(pais); 
+            DefaultMutableTreeNode nodo_equipo = new DefaultMutableTreeNode
+            (new Equipo(jt_paisEquipo1.getText(), jt_nombreEquipo1.getText(), 
+                    jt_ciudadEquipo.getText(), jt_estadioEquipo.getText()));
+            raiz.add(pais_nodo);
+            pais_nodo.add(nodo_equipo);
+        }else if (num == 1){
+            nodo_selec.add(new DefaultMutableTreeNode
+            (new Equipo(jt_paisEquipo1.getText(), jt_nombreEquipo1.getText(), 
+                    jt_ciudadEquipo.getText(), jt_estadioEquipo.getText()))); 
+        }
         
-        
-       DefaultMutableTreeNode nodo_equipos = new DefaultMutableTreeNode
-        (new Equipo(jt_paisEquipo1.getText(), jt_nombreEquipo1.getText(), jt_ciudadEquipo.getText(), jt_estadioEquipo.getText())); 
-       DefaultMutableTreeNode nombre_equipo = new DefaultMutableTreeNode((String)jt_nombreEquipo1.getText()); 
-       DefaultMutableTreeNode ciudad_equipo = new DefaultMutableTreeNode((String) jt_ciudadEquipo.getText()); 
-       DefaultMutableTreeNode estadio_equipo = new DefaultMutableTreeNode((String) jt_ciudadEquipo.getText()); 
+        modeloArbolito.reload();
+        jt_ciudadEquipo.setText("");
+        jt_estadioEquipo.setText("");
+        jt_nombreEquipo1.setText("");
+        jt_paisEquipo1.setText("");
+       
+       
        
        
         
@@ -632,10 +646,10 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
         if (jl_jugadores.getSelectedIndex() >= 0) {
             DefaultListModel modelo = (DefaultListModel)jl_jugadores.getModel();
             String nombre = JOptionPane.showInputDialog("Ingrese el nombre"); 
-            
-            int edad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la edad: ")); 
-            
-                    
+            int edad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la edad: "));  
+            ((Jugador) modelo.get(jl_jugadores.getSelectedIndex())).setNombre(nombre);
+            ((Jugador) modelo.get(jl_jugadores.getSelectedIndex())).setEdad(edad);
+                       
         }
         
     }//GEN-LAST:event_modificar_jugadorActionPerformed
