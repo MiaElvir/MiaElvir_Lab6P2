@@ -738,14 +738,15 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
             if (nodo_selec.getUserObject() instanceof Equipo){
                 jugador_selec = (Jugador)m.getElementAt(jl_jugadores.getSelectedIndex()); 
                 boolean existe = false; 
+                
                 for (int i = 0; i < nodo_selec.getChildCount(); i++) {
                     if (nodo_selec.getUserObject().equals(jugador_selec.getPosicion())) {
-                        //DefaultMutableTreeNode jugador_posicion = new DefaultMutableTreeNode((Jugador)nodo_selec.getChildAt(i)); 
+                       //jugador_posicion = new DefaultMutableTreeNode((Jugador)nodo_selec.getChildAt(i)); 
                         existe = true; 
                     }  
                 }
                 if (existe == false) {
-                     DefaultMutableTreeNode jugador_posicion = new DefaultMutableTreeNode(jugador_selec.getPosicion()); 
+                    DefaultMutableTreeNode jugador_posicion = new DefaultMutableTreeNode(jugador_selec.getPosicion()); 
                     DefaultMutableTreeNode jugador_nodo = new DefaultMutableTreeNode(jugador_selec); 
                     jugador_posicion.add(jugador_nodo);
                     nodo_selec.add(jugador_posicion);
@@ -760,8 +761,8 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
                 
                 
             }
-            //modelito.reload(nodo_selec);
-            jt_equiposArbol.setModel(modelito);
+            modelito.reload(nodo_selec);
+            //jt_equiposArbol.setModel(modelito);
         }
         
         
