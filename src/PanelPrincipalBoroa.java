@@ -622,8 +622,8 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
             DefaultMutableTreeNode nodo_estadio = new DefaultMutableTreeNode((String)jt_estadioEquipo.getText()); 
             raiz.add(pais_nodo);
             pais_nodo.add(nodo_equipo);
-            nodo_equipo.add(nodo_ciudad);
-            nodo_ciudad.add(nodo_estadio);
+//            nodo_equipo.add(nodo_ciudad);
+//            nodo_ciudad.add(nodo_estadio);
             
         }else if (num == 1){
             DefaultMutableTreeNode nodo_ciudad = new DefaultMutableTreeNode((String)jt_ciudadEquipo.getText());
@@ -632,8 +632,8 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
             (new Equipo(jt_paisEquipo1.getText(), jt_nombreEquipo1.getText(), 
                     jt_ciudadEquipo.getText(), jt_estadioEquipo.getText())); 
             nodo_selec.add(nodo_equipo); 
-            nodo_equipo.add(nodo_ciudad);
-            nodo_ciudad.add(nodo_estadio);
+//            nodo_equipo.add(nodo_ciudad);
+//            nodo_ciudad.add(nodo_estadio);
         }
         
         modeloArbolito.reload();
@@ -730,14 +730,31 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
             Object p = jt_equiposArbol.getSelectionPath().getLastPathComponent();
             nodo_selec = (DefaultMutableTreeNode)p; 
             if (nodo_selec.getUserObject() instanceof Equipo){
-                jugador_selec = (Jugador)m.get(jl_jugadores.getSelectedIndex()); 
-                DefaultMutableTreeNode jugador_posicion = new DefaultMutableTreeNode(jugador_selec.getPosicion()); 
-                DefaultMutableTreeNode jugador_nodo = new DefaultMutableTreeNode(jugador_selec); 
-                nodo_selec.add(jugador_posicion);
+                jugador_selec = (Jugador)m.getElementAt(jl_jugadores.getSelectedIndex()); 
+                boolean existe = false; 
+                for (int i = 0; i < nodo_selec.getChildCount(); i++) {
+                    if (nodo_selec.getUserObject().equals(jugador_selec.getPosicion())) {
+                        //DefaultMutableTreeNode jugador_posicion = new DefaultMutableTreeNode((Jugador)nodo_selec.getChildAt(i)); 
+                        existe = true; 
+                    }  
+                }
+                if (existe == false) {
+                     DefaultMutableTreeNode jugador_posicion = new DefaultMutableTreeNode(jugador_selec.getPosicion()); 
+                    DefaultMutableTreeNode jugador_nodo = new DefaultMutableTreeNode(jugador_selec); 
+                    jugador_posicion.add(jugador_nodo);
+                    nodo_selec.add(jugador_posicion);
+                }else if (existe == true){
+                    DefaultMutableTreeNode jugador_nodo = new DefaultMutableTreeNode(jugador_selec); 
+                    nodo_selec.add(jugador_nodo);
+                }
                 
-                jugador_posicion.add(jugador_nodo);
+//                DefaultMutableTreeNode jugador_nodo = new DefaultMutableTreeNode(jugador_selec); 
+//                jugador_posicion.add(jugador_nodo);
+//                nodo_selec.add(jugador_posicion);
+                
+                
             }
-            //modelito.reload();
+            //modelito.reload(nodo_selec);
             jt_equiposArbol.setModel(modelito);
         }
         
