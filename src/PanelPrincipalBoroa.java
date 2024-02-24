@@ -707,16 +707,16 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
 
     private void eliminar_equipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_equipoActionPerformed
        
-//        try{
-//            DefaultTreeModel modelo = (DefaultTreeModel)jt_equiposArbol.getModel();
-//            Object p = jt_equiposArbol.getSelectionPath().getLastPathComponent(); 
-//            nodo_selec = (DefaultMutableTreeNode)p; 
-//            modelo.removeNodeFromParent(nodo_selec);
-//        } catch (IllegalArgumentException v){
-//            JOptionPane.showMessageDialog(this, "No hay nodos para eliminar");
-//        } catch (NullPointerException v){
-//            JOptionPane.showMessageDialog(this, "Ocurrio un problema");
-//        }
+        try{
+            DefaultTreeModel modelo = (DefaultTreeModel)jt_equiposArbol.getModel();
+            Object p = jt_equiposArbol.getSelectionPath().getLastPathComponent(); 
+            nodo_selec = (DefaultMutableTreeNode)p; 
+            modelo.removeNodeFromParent(nodo_selec);
+        } catch (IllegalArgumentException v){
+            JOptionPane.showMessageDialog(this, "No hay nodos para eliminar");
+        } catch (NullPointerException v){
+            JOptionPane.showMessageDialog(this, "Ocurrio un problema");
+        }
        
        
         
