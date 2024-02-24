@@ -53,7 +53,7 @@ public class Equipo {
 
     @Override
     public String toString() {
-        return pais;
+        return nombre;
     }
     
     

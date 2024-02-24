@@ -309,6 +309,11 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
         jt_equiposArbol.setForeground(new java.awt.Color(0, 0, 0));
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Equipos");
         jt_equiposArbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jt_equiposArbol.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jt_equiposArbolMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jt_equiposArbol);
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -387,9 +392,19 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
         jp_jugadores.add(modificar_jugador);
 
         eliminar_jugador.setText("Eliminar");
+        eliminar_jugador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eliminar_jugadorMouseClicked(evt);
+            }
+        });
         jp_jugadores.add(eliminar_jugador);
 
         eliminar_equipo.setText("Eliminar");
+        eliminar_equipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminar_equipoActionPerformed(evt);
+            }
+        });
         jp_equipos.add(eliminar_equipo);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -653,6 +668,35 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_modificar_jugadorActionPerformed
+
+    private void eliminar_jugadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminar_jugadorMouseClicked
+        if (jl_jugadores.getSelectedIndex() >= 0) {
+            
+           
+            jl_jugadores.remove(jl_jugadores.getSelectedIndex());
+            
+        }
+        
+        
+    }//GEN-LAST:event_eliminar_jugadorMouseClicked
+
+    private void eliminar_equipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar_equipoActionPerformed
+       DefaultTreeModel modelo = (DefaultTreeModel)jt_equiposArbol.getModel(); 
+       Object p = jt_equiposArbol.getSelectionPath().getLastPathComponent(); 
+       nodo_selec = (DefaultMutableTreeNode)p; 
+       modelo.removeNodeFromParent(nodo_selec);
+       
+        
+    }//GEN-LAST:event_eliminar_equipoActionPerformed
+
+    private void jt_equiposArbolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_equiposArbolMouseClicked
+        if (evt.isMetaDown()){
+            jp_equipos.show(evt.getComponent(), evt.getX(), evt.getY());
+        }
+          
+       
+        
+    }//GEN-LAST:event_jt_equiposArbolMouseClicked
 
     /**
      * @param args the command line arguments
