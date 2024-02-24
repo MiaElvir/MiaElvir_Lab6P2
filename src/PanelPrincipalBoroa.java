@@ -324,6 +324,11 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton5.setForeground(new java.awt.Color(0, 0, 0));
         jButton5.setText("Transferir");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -671,6 +676,8 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
 
     private void eliminar_jugadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminar_jugadorMouseClicked
         if (jl_jugadores.getSelectedIndex() >= 0) {
+            DefaultTreeModel m = (DefaultTreeModel)jt_equiposArbol.getModel(); 
+            DefaultListModel j = (DefaultListModel)jl_jugadores.getModel(); 
             
            
             jl_jugadores.remove(jl_jugadores.getSelectedIndex());
@@ -697,6 +704,22 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
        
         
     }//GEN-LAST:event_jt_equiposArbolMouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        DefaultTreeModel modelito = (DefaultTreeModel)jt_equiposArbol.getModel(); 
+        Object p = jt_equiposArbol.getSelectionPath().getLastPathComponent();
+        nodo_selec = (DefaultMutableTreeNode)p; 
+        DefaultListModel m = (DefaultListModel)jl_jugadores.getModel(); 
+        jugador_selec = (Jugador)m.get(jl_jugadores.getSelectedIndex()); 
+        DefaultMutableTreeNode jugador_nodo = new DefaultMutableTreeNode(jugador_selec); 
+        nodo_selec.add(jugador_nodo);
+        modelito.reload();
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jButton5MouseClicked
 
     /**
      * @param args the command line arguments
