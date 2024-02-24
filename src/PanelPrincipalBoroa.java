@@ -676,9 +676,16 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
         if (jl_jugadores.getSelectedIndex() >= 0) {
             DefaultListModel modelo = (DefaultListModel)jl_jugadores.getModel();
             String nombre = JOptionPane.showInputDialog("Ingrese el nombre"); 
-            int edad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la edad: "));  
-            ((Jugador) modelo.get(jl_jugadores.getSelectedIndex())).setNombre(nombre);
-            ((Jugador) modelo.get(jl_jugadores.getSelectedIndex())).setEdad(edad);
+            try {
+                 int edad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la edad: "));
+                  ((Jugador) modelo.get(jl_jugadores.getSelectedIndex())).setNombre(nombre);
+                    ((Jugador) modelo.get(jl_jugadores.getSelectedIndex())).setEdad(edad);
+            }catch(NumberFormatException e){
+                 JOptionPane.showMessageDialog(this, "No se deben ingresar letras");
+            }
+           
+            
+           
                        
         }
         
@@ -717,14 +724,22 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
     }//GEN-LAST:event_jt_equiposArbolMouseClicked
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        DefaultTreeModel modelito = (DefaultTreeModel)jt_equiposArbol.getModel(); 
-        Object p = jt_equiposArbol.getSelectionPath().getLastPathComponent();
-        nodo_selec = (DefaultMutableTreeNode)p; 
-        DefaultListModel m = (DefaultListModel)jl_jugadores.getModel(); 
-        jugador_selec = (Jugador)m.get(jl_jugadores.getSelectedIndex()); 
-        DefaultMutableTreeNode jugador_nodo = new DefaultMutableTreeNode(jugador_selec); 
-        nodo_selec.add(jugador_nodo);
-        modelito.reload();
+        if (jl_jugadores.getSelectedIndex() >= 0) {
+            DefaultTreeModel modelito = (DefaultTreeModel)jt_equiposArbol.getModel(); 
+            DefaultListModel m = (DefaultListModel)jl_jugadores.getModel(); 
+            Object p = jt_equiposArbol.getSelectionPath().getLastPathComponent();
+            nodo_selec = (DefaultMutableTreeNode)p; 
+            if (nodo_selec.getUserObject() instanceof Equipo){
+                jugador_selec = (Jugador)m.get(jl_jugadores.getSelectedIndex()); 
+                DefaultMutableTreeNode jugador_posicion = new DefaultMutableTreeNode(jugador_selec.getPosicion()); 
+                DefaultMutableTreeNode jugador_nodo = new DefaultMutableTreeNode(jugador_selec); 
+                nodo_selec.add(jugador_posicion);
+                
+                jugador_posicion.add(jugador_nodo);
+            }
+            //modelito.reload();
+            jt_equiposArbol.setModel(modelito);
+        }
         
         
         
