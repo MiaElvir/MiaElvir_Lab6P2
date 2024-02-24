@@ -618,12 +618,22 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
             DefaultMutableTreeNode nodo_equipo = new DefaultMutableTreeNode
             (new Equipo(jt_paisEquipo1.getText(), jt_nombreEquipo1.getText(), 
                     jt_ciudadEquipo.getText(), jt_estadioEquipo.getText()));
+            DefaultMutableTreeNode nodo_ciudad = new DefaultMutableTreeNode((String)jt_ciudadEquipo.getText());
+            DefaultMutableTreeNode nodo_estadio = new DefaultMutableTreeNode((String)jt_estadioEquipo.getText()); 
             raiz.add(pais_nodo);
             pais_nodo.add(nodo_equipo);
+            nodo_equipo.add(nodo_ciudad);
+            nodo_ciudad.add(nodo_estadio);
+            
         }else if (num == 1){
-            nodo_selec.add(new DefaultMutableTreeNode
+            DefaultMutableTreeNode nodo_ciudad = new DefaultMutableTreeNode((String)jt_ciudadEquipo.getText());
+            DefaultMutableTreeNode nodo_estadio = new DefaultMutableTreeNode((String)jt_estadioEquipo.getText()); 
+            DefaultMutableTreeNode nodo_equipo = new DefaultMutableTreeNode
             (new Equipo(jt_paisEquipo1.getText(), jt_nombreEquipo1.getText(), 
-                    jt_ciudadEquipo.getText(), jt_estadioEquipo.getText()))); 
+                    jt_ciudadEquipo.getText(), jt_estadioEquipo.getText())); 
+            nodo_selec.add(nodo_equipo); 
+            nodo_equipo.add(nodo_ciudad);
+            nodo_ciudad.add(nodo_estadio);
         }
         
         modeloArbolito.reload();
@@ -678,6 +688,7 @@ public class PanelPrincipalBoroa extends javax.swing.JFrame {
         if (jl_jugadores.getSelectedIndex() >= 0) {
             DefaultTreeModel m = (DefaultTreeModel)jt_equiposArbol.getModel(); 
             DefaultListModel j = (DefaultListModel)jl_jugadores.getModel(); 
+            Jugador jugi = (Jugador)j.get(jl_jugadores.getSelectedIndex()); 
             
            
             jl_jugadores.remove(jl_jugadores.getSelectedIndex());
